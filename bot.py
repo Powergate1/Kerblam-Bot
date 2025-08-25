@@ -1,8 +1,25 @@
+from flask import Flask
+from threading import Thread
+
+# Create a tiny web server
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is running!"  # Responds to web requests
+
+def run():
+    app.run(host='0.0.0.0', port=8080)  # Start server on port 8080
+
+# Run the server in a separate thread so your bot can still run
+Thread(target=run).start()
+
+
 import discord
 from discord.ext import commands
 import random
+import os
 
-TOKEN = "MTQwOTY1MTA1MjQ0NTQzMzk2NQ.GDWPOe.DP86SysI0CsD65fqaY4qNRcFB2qtDCs9UNsMv4"  # paste the token you copied
 
 intents = discord.Intents.default()
 intents.message_content = True  # 👈 this is the important line!
@@ -33,4 +50,5 @@ async def pop(ctx, size: int = 6, nails: int = 3):
 
     await ctx.send(output)
 
-bot.run(TOKEN)
+bot.run(os.environ['TOKEN'])
+

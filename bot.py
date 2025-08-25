@@ -38,4 +38,5 @@ async def pop(ctx, size: int = 6, nails: int = 3):
 # --------------------------
 # Run the bot using environment variable
 # --------------------------
-bot.run(os.environ['DISCORD_TOKEN'])
+bot.run(os.environ['TOKEN'])
+
